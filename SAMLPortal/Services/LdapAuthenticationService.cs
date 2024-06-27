@@ -41,8 +41,8 @@ namespace SAMLPortal.Services
 
 				while (searchResults.HasMore())
 				{
-					try
-					{
+					//try
+					//{
 						var user = searchResults.Next();
 						user.GetAttributeSet();
 						if (user != null)
@@ -80,11 +80,11 @@ namespace SAMLPortal.Services
 						{
 							throw new Exception("Invalid username or password");
 						}
-					}
-					catch (Exception e)
-					{
-						throw new Exception("Invalid username or password");
-					}
+					//}
+					//catch (Exception e)
+					//{
+					//	throw new Exception("Invalid username or password");
+					//}
 				}
 			}
 
