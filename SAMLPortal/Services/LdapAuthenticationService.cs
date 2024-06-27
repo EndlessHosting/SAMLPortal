@@ -53,10 +53,12 @@ namespace SAMLPortal.Services
 								var ldapDisplayName = user.GetAttribute(GlobalSettings.Get("LDAP_Attr_DisplayName")).StringValue;
 								var ldapUsername = user.GetAttribute(GlobalSettings.Get("LDAP_Attr_UID")).StringValue;
 								var ldapEmail = user.GetAttribute(GlobalSettings.Get("LDAP_Attr_Mail")).StringValue;
+		                        var ldapImmutableID = user.GetAttribute(GlobalSettings.Get("LDAP_Attr_ImmutableID")).StringValue;
+						        var ldapIdpEmail = user.GetAttribute(GlobalSettings.Get("LDAP_Attr_IDPEmail")).StringValue;
 								var isAdmin = filter == adminSearchFilter;
 								var ldapMemberships = user.GetAttribute(GlobalSettings.Get("LDAP_Attr_MemberOf")).StringValueArray;
 
-								List<object> attributes = new List<object> { ldapDisplayName, ldapUsername, ldapEmail, ldapMemberships };
+								List<object> attributes = new List<object> { ldapDisplayName, ldapImmutableID, ldapEmail, ldapMemberships, ldapIdpEmail };
 								if (attributes.Any(a => a == null))
 								{
 									var nullAttributes = attributes.FindAll(a => a == null).ToArray();
