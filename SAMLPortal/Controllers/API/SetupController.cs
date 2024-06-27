@@ -9,7 +9,7 @@ using SAMLPortal.Models;
 
 namespace SAMLPortal.Controllers.API
 {
-	[Route("api/setup")]
+	[Route("EGP/api/setup")]
 	[ApiController]
 	[ServiceFilter(typeof(SetupAsyncActionFilter))]
 	//[Produces("application/json")]
