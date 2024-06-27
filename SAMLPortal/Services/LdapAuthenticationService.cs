@@ -35,7 +35,7 @@ namespace SAMLPortal.Services
 					GlobalSettings.Get("LDAP_SearchBase"),
 					LdapConnection.ScopeSub,
 					filter,
-					new string[] { GlobalSettings.Get("LDAP_Attr_MemberOf"), GlobalSettings.Get("LDAP_Attr_DisplayName"), GlobalSettings.Get("LDAP_Attr_UID"), GlobalSettings.Get("LDAP_Attr_Mail") },
+					new string[] { GlobalSettings.Get("LDAP_Attr_MemberOf"), GlobalSettings.Get("LDAP_Attr_DisplayName"), GlobalSettings.Get("LDAP_Attr_UID"), GlobalSettings.Get("LDAP_Attr_Mail"), GlobalSettings.Get("LDAP_Attr_ImmutableID"), GlobalSettings.Get("LDAP_Attr_IDPEmail") },
 					false
 				);
 
