@@ -71,6 +71,8 @@ namespace SAMLPortal.Services
 									Username = ldapUsername,
 									Email = ldapEmail,
 									IsAdmin = isAdmin,
+		                            IDPEmail = ldapIdpEmail,
+							        ImmutableID = ldapImmutableID,
 									Memberships = ldapMemberships != null ? ldapMemberships : new string[] { }
 								};
 							}
