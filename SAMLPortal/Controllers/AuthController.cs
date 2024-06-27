@@ -87,6 +87,9 @@ namespace SAMLPortal.Controllers
 							userClaims.Add(new Claim("membership", membership));
 						}
 
+   						userClaims.Add(new Claim("IDPEmail", user.IDPEmail));
+		                userClaims.Add(new Claim("NameID", user.ImmutableID));
+
 						List<string> rolesToClaim = new List<string>();
 						if (user.IsAdmin)
 						{
