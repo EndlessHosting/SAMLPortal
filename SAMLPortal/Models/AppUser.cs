@@ -13,5 +13,7 @@ namespace SAMLPortal.Models
 		public string Email { get; set; }
 		public bool IsAdmin { get; set; }
 		public string[] Memberships { get; set; }
+		public string IDPEmail {get; set;}
+		public string ImmutableID {get; set;}
 	}
 }
