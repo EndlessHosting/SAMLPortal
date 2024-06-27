@@ -14,7 +14,7 @@ using System.Data;
 
 namespace SAMLPortal.Controllers
 {
-	[Route("Setup")]
+	[Route("EGP/Setup")]
 	[ServiceFilter(typeof(SetupAsyncActionFilter))]
 	public class SetupController : Controller
 	{
