@@ -21,7 +21,7 @@ using SAMLPortal.Models;
 namespace SAMLPortal.Controllers
 {
 	[Authorize]
-	[Route("EGP/Auth")]
+	[Route("Auth")]
 	public class AuthController : Controller
 	{
 		private readonly Models.IAuthenticationService _authService;
