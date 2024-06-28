@@ -13,7 +13,7 @@ using SAMLPortal.Misc;
 
 namespace SAMLPortal.Controllers
 {
-	[Route("EGP/App")]
+	[Route("App")]
 	[Authorize(Roles = UserRoles.Administrator)]
 	public class AppController : Controller
 	{
