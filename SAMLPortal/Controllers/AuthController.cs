@@ -172,7 +172,7 @@ namespace SAMLPortal.Controllers
 	        var queryString = queryParameters.ToString();
 	
 	        // Redirect to the GET endpoint
-	        return Redirect($"Auth/HandleRequest?{queryString}");
+	        return Redirect($"HandleRequest?{queryString}");
         }
 
 		[Route("StartRequest/{id}")]
