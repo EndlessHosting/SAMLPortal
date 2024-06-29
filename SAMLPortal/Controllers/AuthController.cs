@@ -153,6 +153,7 @@ namespace SAMLPortal.Controllers
 		}
 
 	    [HttpPost]
+	    [AllowAnonymous]
 	    [Route("HandleRequestPost")]
 	    public IActionResult PostToGet([FromBody] JsonElement postData)
 	    {
