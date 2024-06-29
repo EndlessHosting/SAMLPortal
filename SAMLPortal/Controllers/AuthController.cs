@@ -155,7 +155,7 @@ namespace SAMLPortal.Controllers
 	    [HttpPost]
 	    [AllowAnonymous]
 	    [Route("HandleRequestPost")]
-	    public IActionResult PostToGet([FromBody] JsonElement postData)
+	    public IActionResult PostToGet([FromForm] JsonElement postData)
 	    {
 	        var queryParameters = new List<string>();
 	        foreach (var property in postData.EnumerateObject())
