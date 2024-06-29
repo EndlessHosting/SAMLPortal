@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.Json;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using ITfoxtec.Identity.Saml2;
@@ -150,6 +151,23 @@ namespace SAMLPortal.Controllers
 			return ComputeRequest(verifiedApp);
 
 		}
+
+	    [HttpPost]
+	    [Route("HandleRequestPost")]
+	    public IActionResult PostToGet([FromBody] JsonElement postData)
+	    {
+	        var queryParameters = new List<string>();
+	        foreach (var property in postData.EnumerateObject())
+	        {
+	            var key = property.Name;
+	            var value = property.Value.ToString();
+	            queryParameters.Add($"{key}={value}");
+	        }
+	        var queryString = string.Join("&", queryParameters);
+	
+	
+	        return Redirect($"/Auth/HandleRequest?{queryString}");
+	    }
 
 		[Route("StartRequest/{id}")]
 		public IActionResult StartRequest(int id)
