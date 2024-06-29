@@ -153,27 +153,40 @@ namespace SAMLPortal.Controllers
 
 		}
 
-	    [HttpPost]
+		[HttpPost]
 	    [AllowAnonymous]
-	    [Route("HandleRequestPost")]
-	    public IActionResult PostToGet([FromForm] string SAMLRequest, [FromForm] string RelayState, [FromForm] string SigAlg, [FromForm] string Signature)
-        {
-	        // Construct the query string from the POST data
-	        var queryParameters = HttpUtility.ParseQueryString(string.Empty);
-	        if (!string.IsNullOrEmpty(SAMLRequest))
-	            queryParameters["SAMLRequest"] = SAMLRequest;
-	        if (!string.IsNullOrEmpty(RelayState))
-	            queryParameters["RelayState"] = RelayState;
-	        if (!string.IsNullOrEmpty(SigAlg))
-	            queryParameters["SigAlg"] = SigAlg;
-	        if (!string.IsNullOrEmpty(Signature))
-	            queryParameters["Signature"] = Signature;
+        [Route("HandleRequestPost")]
+		public IActionResult HandleRequest()
+		{
+			var requestBinding = new Saml2PostBinding();
+			var requestedApp = ReadAppFromRequest(requestBinding);
+			var verifiedApp = ValidateApp(requestedApp);
+
+			return ComputeRequest(verifiedApp);
+
+		}
+
+	    // [HttpPost]
+	    // [AllowAnonymous]
+	    // [Route("HandleRequestPost")]
+	    // public IActionResult PostToGet([FromForm] string SAMLRequest, [FromForm] string RelayState, [FromForm] string SigAlg, [FromForm] string Signature)
+     //    {
+	    //     // Construct the query string from the POST data
+	    //     var queryParameters = HttpUtility.ParseQueryString(string.Empty);
+	    //     if (!string.IsNullOrEmpty(SAMLRequest))
+	    //         queryParameters["SAMLRequest"] = SAMLRequest;
+	    //     if (!string.IsNullOrEmpty(RelayState))
+	    //         queryParameters["RelayState"] = RelayState;
+	    //     if (!string.IsNullOrEmpty(SigAlg))
+	    //         queryParameters["SigAlg"] = SigAlg;
+	    //     if (!string.IsNullOrEmpty(Signature))
+	    //         queryParameters["Signature"] = Signature;
 	
-	        var queryString = queryParameters.ToString();
+	    //     var queryString = queryParameters.ToString();
 	
-	        // Redirect to the GET endpoint
-	        return Redirect($"HandleRequest?{queryString}");
-        }
+	    //     // Redirect to the GET endpoint
+	    //     return Redirect($"HandleRequest?{queryString}");
+     //    }
 
 		[Route("StartRequest/{id}")]
 		public IActionResult StartRequest(int id)
