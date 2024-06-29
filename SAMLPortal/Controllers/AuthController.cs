@@ -156,7 +156,7 @@ namespace SAMLPortal.Controllers
 		[HttpPost]
 	    [AllowAnonymous]
         [Route("HandleRequestPost")]
-		public IActionResult HandleRequest()
+		public IActionResult HandleRequestPost()
 		{
 			var requestBinding = new Saml2PostBinding();
 			var requestedApp = ReadAppFromRequest(requestBinding);
