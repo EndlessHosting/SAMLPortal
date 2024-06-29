@@ -155,20 +155,24 @@ namespace SAMLPortal.Controllers
 	    [HttpPost]
 	    [AllowAnonymous]
 	    [Route("HandleRequestPost")]
-	    public IActionResult PostToGet([FromForm] JsonElement postData)
-	    {
-	        var queryParameters = new List<string>();
-	        foreach (var property in postData.EnumerateObject())
-	        {
-	            var key = property.Name;
-	            var value = property.Value.ToString();
-	            queryParameters.Add($"{key}={value}");
-	        }
-	        var queryString = string.Join("&", queryParameters);
+	    public IActionResult PostToGet([FromForm] string SAMLRequest, [FromForm] string RelayState, [FromForm] string SigAlg, [FromForm] string Signature)
+        {
+	        // Construct the query string from the POST data
+	        var queryParameters = HttpUtility.ParseQueryString(string.Empty);
+	        if (!string.IsNullOrEmpty(SAMLRequest))
+	            queryParameters["SAMLRequest"] = SAMLRequest;
+	        if (!string.IsNullOrEmpty(RelayState))
+	            queryParameters["RelayState"] = RelayState;
+	        if (!string.IsNullOrEmpty(SigAlg))
+	            queryParameters["SigAlg"] = SigAlg;
+	        if (!string.IsNullOrEmpty(Signature))
+	            queryParameters["Signature"] = Signature;
 	
+	        var queryString = queryParameters.ToString();
 	
-	        return Redirect($"/Auth/HandleRequest?{queryString}");
-	    }
+	        // Redirect to the GET endpoint
+	        return Redirect($"Auth/HandleRequest?{queryString}");
+        }
 
 		[Route("StartRequest/{id}")]
 		public IActionResult StartRequest(int id)
